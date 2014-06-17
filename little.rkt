@@ -28,7 +28,33 @@
       ((eq? a (car lat)) (cdr lat))
       (else (cons (car lat) (rember a (cdr lat)))))))
 
-(rember meat '(meat mashed potato))
-(rember meat '(mashed meat potato))
-(rember meat '(mashed potato meat))
-(rember meat '(mashed meat potato meat))
+(define firsts 
+  (lambda (l)
+    (cond 
+      ((null? l) '())
+      ((null? (car l)) (cons '() (firsts (cdr l))))
+      (else (cons (car(car l)) (firsts (cdr l)))))))
+
+(define insertR
+  (lambda (new old lat)
+    (cond 
+      ((null? lat) '())
+      (else 
+       (cons 
+        (car lat)
+        (cond 
+          ((eq? (car lat) old) (cons new (cdr lat)))
+          (else (insertR new old (cdr lat)))))))))
+
+(define insertL
+  (lambda (new old lat)
+    (cond 
+      ((null? lat) '())
+      (else 
+       
+        (cond 
+          ((eq? (car lat) old) (cons new lat))
+          (else (cons (car lat) (insertL new old (cdr lat)))))))))
+
+(insertR 1 2 '(1 2 3))
+(insertL 1 233 '(1 2 3))
