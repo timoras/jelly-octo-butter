@@ -28,6 +28,17 @@
       ((eq? a (car lat)) (cdr lat))
       (else (cons (car lat) (rember a (cdr lat)))))))
 
+(define multirember
+  (lambda (a lat)
+    (cond 
+      ((null? lat) '())
+      ((eq? a (car lat)) (multirember a (cdr lat)))
+      (else (cons (car lat) (multirember a (cdr lat)))))))
+
+(list meat meat potato mashed)
+(multirember potato (list meat meat potato mashed))
+(multirember meat (list meat meat potato mashed))
+(multirember meat (list meat meat potato mashed meat ))
 (define firsts 
   (lambda (l)
     (cond 
