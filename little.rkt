@@ -67,5 +67,5 @@
           ((eq? (car lat) old) (cons new lat))
           (else (cons (car lat) (insertL new old (cdr lat)))))))))
 
-(insertR 1 2 '(1 2 3))
-(insertL 1 233 '(1 2 3))
+
+
